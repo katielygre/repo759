@@ -1,1 +1,7 @@
-test
+### Problem 1
+I Went through a) through c) and understand how to time code, how to submit my assignments with git, and what the recommended workflow is when it comes to working on my assignment”.
+
+
+### Problem 2
+task2.sh
+

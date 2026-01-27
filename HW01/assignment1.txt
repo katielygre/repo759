@@ -5,3 +5,74 @@ I Went through a) through c) and understand how to time code, how to submit my a
 ### Problem 2
 task2.sh
 
+#!/bin/bash
+
+#(a)
+cd somedir
+
+#(b)
+cat sometext.txt
+
+#(c)
+tail -n 5 sometext.txt
+
+#(d)
+tail -n 5 *.txt
+
+#(e)
+for n in {1..6}; do echo $n; done
+
+### Problem 3
+a) No modules loaded
+
+b) gcc (GCC) 14.3.1 20250617 (Red Hat 14.3.1-2)
+
+[lygre@euler-login-1 ~]$ gcc -v
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/14/lto-wrapper
+OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+OFFLOAD_TARGET_DEFAULT=1
+Target: x86_64-redhat-linux
+Configured with: ../configure --enable-bootstrap --enable-languages=c,c++,fortran,lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugs.almalinux.org/ --enable-shared --enable-threads=posix --enable-checking=release --enable-multilib --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-libstdcxx-backtrace --with-libstdcxx-zoneinfo=/usr/share/zoneinfo --with-linker-hash-style=gnu --enable-plugin --enable-initfini-array --without-isl --enable-offload-targets=nvptx-none,amdgcn-amdhsa --enable-offload-defaulted --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v3 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1 --enable-host-pie --enable-host-bind-now
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 14.3.1 20250617 (Red Hat 14.3.1-2) (GCC)
+
+c)
+[lygre@euler-login-1 ~]$ module avail cuda
+
+----------------------- /opt/apps/lmod/modulefiles ------------------------
+   nvidia/cuda/10.2.2    nvidia/cuda/12.2.0
+   nvidia/cuda/11.0.3    nvidia/cuda/12.5.0
+   nvidia/cuda/11.3.1    nvidia/cuda/12.9.1
+   nvidia/cuda/11.6.0    nvidia/cuda/13.0.0             (D)
+   nvidia/cuda/11.8.0    nvidia/nvhpc-hpcx-cuda11/24.5
+   nvidia/cuda/12.0.0    nvidia/nvhpc-hpcx-cuda12/23.11
+   nvidia/cuda/12.1.0    nvidia/nvhpc-hpcx-cuda12/24.5  (D)
+
+  Where:
+   D:  Default Module
+
+Module defaults are chosen based on Find First Rules due to Name/Version/Version modules found in the module tree.
+See https://lmod.readthedocs.io/en/latest/060_locating.html for details.
+
+If the avail list is too long consider trying:
+
+"module --default avail" or "ml -d av" to just list the default modules.
+"module overview" or "ml ov" to display the number of modules for each
+name.
+
+Use "module spider" to find all possible modules and extensions.
+Use "module keyword key1 key2 ..." to search for all possible modules
+matching any of the "keys".
+
+d) [lygre@euler-login-1 ~]$ module avail miniforge
+
+----------------------- /opt/apps/lmod/modulefiles ------------------------
+   conda/miniforge/23.1.0    conda/miniforge/24.3.0 (D)
+
+Miniforge is a package manager for installing additional programs and libraries into custom environments.
+
+### Problem 4
+task4.sh

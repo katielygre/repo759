@@ -91,3 +91,12 @@ f) Runs the same job 10 times with task IDs 0-9, accessible through SLURM_ARRAY_
 
 ### Problem 6
 task6.cpp
+
+[lygre@euler-login-1 HW01]$  (main) $ srun -p instruction ./task6 6
+srun: job 20516 queued and waiting for resources
+srun: job 20516 has been allocated resources
+0 1 2 3 4 5 6
+6 5 4 3 2 1 0
+
+### Problem 7
+I filled out the survey

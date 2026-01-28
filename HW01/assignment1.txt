@@ -5,8 +5,6 @@ I Went through a) through c) and understand how to time code, how to submit my a
 ### Problem 2
 task2.sh
 
-#!/bin/bash
-
 #(a)
 cd somedir
 
@@ -76,3 +74,20 @@ Miniforge is a package manager for installing additional programs and libraries 
 
 ### Problem 4
 task4.sh
+
+### Problem 5
+
+a) SLURM_SUBMIT_DIR, it begins execution in the submission directory
+
+b) It is the ID number assigned to your job, used for tracking, canceling ,etc.
+
+c) Use the squeue or watch command: alias watch="watch -n 1 squeue --user=lygre"
+
+d) Use scancel: scancel <JOB_ID>
+
+e) Allocate a GPU
+
+f) Runs the same job 10 times with task IDs 0-9, accessible through SLURM_ARRAY_TASK_ID
+
+### Problem 6
+task6.cpp

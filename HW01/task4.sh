@@ -6,3 +6,4 @@
 #SBATCH -e FirstSlurm.err
 
 hostname
+pwd

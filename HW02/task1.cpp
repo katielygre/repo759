@@ -37,7 +37,9 @@ int main(int argc, char* argv[]) {
     auto stop = high_resolution_clock::now();
 
     // iii) Print time taken
-    auto duration = duration_cast<duration<double, std::milli>>(stop - start);    cout << "Time taken for scan of size " << n << ": " << duration.count() << " milliseconds" << endl;
+    auto elapsed = duration_cast<duration<double, std::milli>>(stop - start);
+
+    cout << "Time taken for scan of size " << n << ": " << elapsed.count() << " milliseconds" << endl;
 
     // iv) Print first element
     cout << "First element of output: " << output[0] << endl;

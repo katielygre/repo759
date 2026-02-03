@@ -1,6 +1,6 @@
-#include scan.h
+#include "scan.h"
 
-void scan(const float *arr, float *output, std::size_t n);
+void scan(const float *arr, float *output, std::size_t n)
 {
     if (n==0) return;
     output[0] = arr[0];

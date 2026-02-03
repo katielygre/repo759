@@ -25,6 +25,10 @@ int main(int argc, char* argv[]) {
     mt19937 generator(759);
     uniform_real_distribution<float> distribution(-1.0, 1.0);
 
+    for (size_t i = 0; i < n; i++) {
+        arr[i] = distribution(generator);
+    }
+
     // ii) Scan array
     auto start = high_resolution_clock::now();
 

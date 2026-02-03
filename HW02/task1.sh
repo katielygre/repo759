@@ -4,6 +4,7 @@
 #SBATCH -J task1
 #SBATCH -o task1.out -e task1.err
 #SBATCH --array=10-30
+#SBATCH --mem=10G
 
 n=$((2**SLURM_ARRAY_TASK_ID))
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #SBATCH -p instruction
-#SBATCH -J task2
-#SBATCH -o task2.out -e task2.err
+#SBATCH -J task3
+#SBATCH -o task3.out -e task3.err
 
 ./task3

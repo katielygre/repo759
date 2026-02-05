@@ -1,0 +1,21 @@
+### Problem 1
+scan.cpp
+task1.cpp
+task1.pdf
+
+### Problem 2
+convolution.cpp
+task2.cpp
+
+### Problem 3
+matmul.cpp
+task3.cpp
+
+The last element of C is consistant across all four functions and the value is resonable.
+If n = 1000 and the column/row values have an average of 0.5, the expected sum is roughly 1000 * (0.5*0.5) = 250.
+The function with the worst performance in mmul3, the inner loop (i) accesses both A (i*n + k) and C (i*n + j) with a stride of n,
+therefore this function has bad spatial locality, even though matrix A (i*n + k) has good temporal locality.
+mmul2 has the best performance, where B (k*n + j) and C (i*n + j) are accessed in the inner loop (j) with a stride of 1.
+Matrix A (i*n + k) stays in one spot. Therefore this function has good spatial and temporal locality.
+mmul1 and mmul4, have more of a mix of good and bad locality, in the inner loop (k) they access A (i*n + k) with a stride of 1 (good spatial locality),
+B (k*n + j)  with a stride of n (bad spatial locality), and C (i*n + j) stays in one spot (good temporal locality)

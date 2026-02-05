@@ -18,6 +18,11 @@ int main(int argc, char* argv[]) {
     size_t n = atol(argv[1]);
     size_t m = atol(argv[2]);
 
+    if (m % 2 == 0) {
+        cerr << "Error: m must be an odd number." << endl;
+        return 1;
+    }
+
     // i and ii) Create matrices
     float *image = new float[n * n];
     float *mask = new float[m * m];

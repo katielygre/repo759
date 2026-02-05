@@ -1,0 +1,13 @@
+Matrix rows: 1000
+mmul1
+Elapsed time: 855.868 milliseconds
+Last element of C: 254.481
+mmul2
+Elapsed time: 561.459 milliseconds
+Last element of C: 254.481
+mmul3
+Elapsed time: 1215.13 milliseconds
+Last element of C: 254.481
+mmul4
+Elapsed time: 852.848 milliseconds
+Last element of C: 254.481

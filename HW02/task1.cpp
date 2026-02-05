@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
     // iii) Print time taken
     auto elapsed = duration_cast<duration<double, std::milli>>(stop - start);
 
-    cout << "Time taken for scan of size " << n << ": " << elapsed.count() << " milliseconds" << endl;
+    cout << "Time taken: " << elapsed.count() << " milliseconds" << endl;
 
     // iv) Print first element
     cout << "First element of output: " << output[0] << endl;

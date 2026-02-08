@@ -10,7 +10,7 @@ __global__ void factorial(int *dA) {
     int result = 1;
 
     // compute idx!
-    for (int i = 1; i <= idx; i++)
+    for (int i = 1; i <= val; i++)
     {
         result *= i;
     }

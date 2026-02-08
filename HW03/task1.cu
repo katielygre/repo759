@@ -35,6 +35,9 @@ int main()
     // launch kernel: 1 block, 8 threads
     factorial<<<1, N>>>(dA);
 
+    // wait for GPU to finish
+    cudaDeviceSynchronize();
+
     // copy results back to CPU
     cudaMemcpy(hA, dA, N * sizeof(int), cudaMemcpyDeviceToHost);
 

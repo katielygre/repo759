@@ -4,23 +4,20 @@
 // Kernel: each thread computes one factorial
 __global__ void factorial(int *dA) {
     // get thread number (0 to 7)
-    int idx = threadIdx.x;
+    int a = threadIdx.x;
 
-    int val = idx + 1;
     int result = 1;
 
-    // compute factorial
-    for (int i = 1; i <= val; i++)
-    {
+    // compute a!
+    for (int i = 1; i <= a; i++) {
         result *= i;
     }
 
     // store answer in device array
-    dA[idx] = result;
+    dA[a] = result;
 }
 
-int main()
-{
+int main(){
     const int N = 8;
     const size_t size = N * sizeof(int);
 

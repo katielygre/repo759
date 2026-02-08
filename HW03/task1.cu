@@ -15,7 +15,7 @@ __global__ void factorial(int *dA) {
     }
 
     // store answer in device array
-    dA[a] = result;
+    dA[idx] = result;
 }
 
 int main(){

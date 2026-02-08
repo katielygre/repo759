@@ -9,7 +9,7 @@ __global__ void factorial(int *dA) {
     int val = idx + 1;
     int result = 1;
 
-    // compute idx!
+    // compute factorial
     for (int i = 1; i <= val; i++)
     {
         result *= i;
@@ -31,7 +31,7 @@ int main()
     int *dA;
 
     // allocate memory on GPU
-    cudaMalloc(&dA, size);
+    cudaMalloc((void**)&dA, size);
 
     // launch kernel: 1 block, 8 threads
     factorial<<<1, N>>>(dA);

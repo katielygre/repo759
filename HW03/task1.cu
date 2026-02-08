@@ -4,7 +4,8 @@
 // Kernel: each thread computes one factorial
 __global__ void factorial(int *dA) {
     // get thread number (0 to 7)
-    int a = threadIdx.x;
+    int idx = threadIdx.x;
+    int a = idx + 1; // compute a! where a = thread number
 
     int result = 1;
 

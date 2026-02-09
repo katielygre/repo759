@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cuda_runtime.h>
+#include <cuda_runtime.h>  // for CUDA runtime API
 
 // Kernel: each thread computes one factorial
 __global__ void factorial(int *dA) {

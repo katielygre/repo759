@@ -29,32 +29,16 @@ int main(){
     int *dA;
 
     // allocate memory on GPU
-    cudaError_t err = cudaMalloc((void**)&dA, size);
-    if (err != cudaSuccess) {
-        std::cerr << "CUDA Malloc failed: " << cudaGetErrorString(err) << std::endl;
-        return -1;
-    }
+    cudaMalloc((void**)&dA, size);
 
     // launch kernel: 1 block, 8 threads
     factorial<<<1, N>>>(dA);
-
-    err = cudaGetLastError();
-    if (err != cudaSuccess) {
-        std::cerr << "Kernel launch failed: " << cudaGetErrorString(err) << std::endl;
-        cudaFree(dA);
-        return -1;
-    }
 
     // wait for GPU to finish
     cudaDeviceSynchronize();
 
     // copy results back to CPU
-    err = cudaMemcpy(hA, dA, size, cudaMemcpyDeviceToHost);
-    if (err != cudaSuccess) {
-        std::cerr << "CUDA Memcpy failed: " << cudaGetErrorString(err) << std::endl;
-        cudaFree(dA);
-        return -1;
-    }
+    cudaMemcpy(hA, dA, size, cudaMemcpyDeviceToHost);
 
     // print answers
     for (int i = 0; i < N; i++) {

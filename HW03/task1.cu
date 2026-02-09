@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cuda_runtime.h>  // for CUDA runtime API
 
-// Kernel: each thread computes one factorial
+// Kernel: each thread computes one factorial, runs on Device (GPU), called from Host (CPU), cuda kernel functions must return void
 __global__ void factorial(int *dA) {
     // get thread number (0 to 7)
     int idx = threadIdx.x;

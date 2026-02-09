@@ -18,15 +18,18 @@ int main() {
 
     int a = distribution(generator);
 
+    // device array and allocate memory on GPU
     int *dA;
     size_t size = numElements * sizeof(int);
     cudaMalloc((void**)&dA, size);
 
+    // host array
     int hA[numElements];
 
     randomArray<<<numBlocks, numThreads>>>(dA, a);
     cudaDeviceSynchronize();
 
+    //copy results back to CPU
     cudaMemcpy(hA, dA, size, cudaMemcpyDeviceToHost);
 
     for (int i = 0; i < numElements - 1; i++) {

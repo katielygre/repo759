@@ -3,7 +3,8 @@
 #include <random> // for random number generation
 
 __global__ void randomArray(int *arr, int a) {
-    arr[blockIdx.x * blockDim.x + threadIdx.x] = a * threadIdx.x + blockIdx.x;
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    arr[idx] = a * threadIdx.x + blockIdx.x;
 }
 
 int main() {
@@ -12,8 +13,8 @@ int main() {
     const int numElements = numBlocks * numThreads;
 
     // Fixed seed
-    mt19937 generator(759);
-    uniform_real_distribution<float> distribution(0, 10);
+    std::mt19937 generator(759);
+    std::uniform_real_distribution<float> distribution(0, 10);
 
     int a = distribution(generator);
 

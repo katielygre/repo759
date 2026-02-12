@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cuda_runtime.h> // for CUDA runtime API
 #include <random> // for random number generation
+#include "vscale.cuh"
 
 int main(int argc, char *argv[]) {
     //check for args

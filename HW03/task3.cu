@@ -45,30 +45,19 @@ int main(int argc, char *argv[]) {
     cudaEventCreate(&stop);
 
     // prefetch
-    cudaMemLocation loc;
-    loc.type = cudaMemLocationTypeDevice;
-    cudaGetDevice(&loc.id);
+    int device;
+    cudaGetDevice(&device);
 
-    cudaMemPrefetchAsync(a, (size_t)sizeof(float) * n, loc, 0, nullptr);
-    cudaMemPrefetchAsync(b, (size_t)sizeof(float) * n, loc, 0, nullptr);
+    cudaMemPrefetchAsync(a, size, {cudaMemLocationTypeDevice, device}, 0, nullptr);
+    cudaMemPrefetchAsync(b, size, {cudaMemLocationTypeDevice, device}, 0, nullptr);
 
     cudaEventRecord(start);
 
     vscale<<<numBlocks, threadsPerBlock>>>(a, b, n);
 
-    // Prefetch back to CPU for faster access by std::printf
-    // Define the CPU location
-    cudaMemLocation hostLoc;
-    hostLoc.type = cudaMemLocationTypeHost;
-    hostLoc.id = 0; // ID is ignored for Host type
-
-    // Use 5 arguments
-    cudaMemPrefetchAsync(b, sizeof(float) * n, hostLoc, 0, nullptr);
-
     cudaDeviceSynchronize();
 
     cudaEventRecord(stop);
-    cudaEventSynchronize(stop);
 
     // Get the elapsed time in milliseconds
     float ms;
@@ -80,5 +69,6 @@ int main(int argc, char *argv[]) {
     // free mem
     cudaFree(a);
     cudaFree(b);
+    return 0;
 
 }

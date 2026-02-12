@@ -54,8 +54,8 @@ int main(int argc, char *argv[]) {
     loc.id = device;
 
     // Use the 5-argument version: (ptr, size, location, flags, stream)
-    cudaMemPrefetchAsync(a, sizeof(float) * n, loc, 0, nullptr);
-    cudaMemPrefetchAsync(b, sizeof(float) * n, loc, 0, nullptr);
+    cudaMemPrefetchAsync(a, sizeof(float) * n, loc, 0, NULL);
+    cudaMemPrefetchAsync(b, sizeof(float) * n, loc, 0, NULL);
 
     cudaEventRecord(start);
 

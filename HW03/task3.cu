@@ -39,6 +39,11 @@ int main(int argc, char *argv[]) {
     int threadsPerBlock = 512;
     int numBlocks = (n + threadsPerBlock -1)/threadsPerBlock;
 
+    cudaEvent_t start;
+    cudaEvent_t stop;
+    cudaEventCreate(&start);
+    cudaEventCreate(&stop);
+
     // prefetch
     int device;
     cudaGetDevice(&device);
@@ -46,19 +51,11 @@ int main(int argc, char *argv[]) {
     cudaMemPrefetchAsync(a, size, {cudaMemLocationTypeDevice, device}, 0, nullptr);
     cudaMemPrefetchAsync(b, size, {cudaMemLocationTypeDevice, device}, 0, nullptr);
 
-    cudaEvent_t start;
-    cudaEvent_t stop;
-    cudaEventCreate(&start);
-    cudaEventCreate(&stop);
-
     cudaEventRecord(start);
-
     vscale<<<numBlocks, threadsPerBlock>>>(a, b, n);
-
-    cudaEventRecord(stop);
-
-    cudaDeviceSynchronize();
-
+	cudaDeviceSynchronize();
+  	cudaEventRecord(stop);
+  	cudaEventSynchronize(stop);
 
     // Get the elapsed time in milliseconds
     float ms;
@@ -71,5 +68,4 @@ int main(int argc, char *argv[]) {
     cudaFree(a);
     cudaFree(b);
     return 0;
-
 }

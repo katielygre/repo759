@@ -3,7 +3,6 @@
 #SBATCH -p instruction
 #SBATCH -J task3
 #SBATCH -o task3.out -e task3.err
-#SBATCH --array=10-29
 #SBATCH --gres=gpu:1
 
 mkdir -p timing_files/16threads

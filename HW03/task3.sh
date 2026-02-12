@@ -6,8 +6,11 @@
 #SBATCH --array=10-29
 #SBATCH --gres=gpu:1
 
-n=$((2**SLURM_ARRAY_TASK_ID))
-
 mkdir -p timing_files/16threads
 
-./task3 $n > "timing_files/16threads/timing_$SLURM_ARRAY_TASK_ID.txt"
+for power in {10..29}
+do
+    n=$((2**power))
+    ./task3 $n > "timing_files/16threads/timing_$power.txt"
+done
+

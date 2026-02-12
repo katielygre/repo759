@@ -45,24 +45,25 @@ int main(int argc, char *argv[]) {
     cudaEventCreate(&stop);
 
     // prefetch
-    int device = 0;
-    cudaGetDevice(&device);
-
-    // Define the location (the GPU)
     cudaMemLocation loc;
     loc.type = cudaMemLocationTypeDevice;
-    loc.id = device;
+    cudaGetDevice(&loc.id);
 
-    // Use the 5-argument version: (ptr, size, location, flags, stream)
-    cudaMemPrefetchAsync(a, sizeof(float) * n, loc, 0, NULL);
-    cudaMemPrefetchAsync(b, sizeof(float) * n, loc, 0, NULL);
+    cudaMemPrefetchAsync(a, (size_t)sizeof(float) * n, loc, 0, nullptr);
+    cudaMemPrefetchAsync(b, (size_t)sizeof(float) * n, loc, 0, nullptr);
 
     cudaEventRecord(start);
 
     vscale<<<numBlocks, threadsPerBlock>>>(a, b, n);
 
     // Prefetch back to CPU for faster access by std::printf
-    cudaMemPrefetchAsync(b, sizeof(float) * n, cudaCpuDeviceId, nullptr);
+    // Define the CPU location
+    cudaMemLocation hostLoc;
+    hostLoc.type = cudaMemLocationTypeHost;
+    hostLoc.id = 0; // ID is ignored for Host type
+
+    // Use 5 arguments
+    cudaMemPrefetchAsync(b, sizeof(float) * n, hostLoc, 0, nullptr);
 
     cudaDeviceSynchronize();
 

@@ -3,6 +3,9 @@
 #SBATCH -p instruction
 #SBATCH -J task3
 #SBATCH -o task3.out -e task3.err
+#SBATCH --array=10-29
 #SBATCH --gres=gpu:1
 
-./task3 1024
+n=$((2**SLURM_ARRAY_TASK_ID))
+
+./task3 $n > "timing_$SLURM_ARRAY_TASK_ID.txt"

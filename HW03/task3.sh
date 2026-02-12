@@ -8,6 +8,6 @@
 
 n=$((2**SLURM_ARRAY_TASK_ID))
 
-mkdir -p timing_files
+mkdir -p timing_files/16threads
 
-./task3 $n > "timing_files/timing_$SLURM_ARRAY_TASK_ID.txt"
+./task3 $n > "timing_files/16threads/timing_$SLURM_ARRAY_TASK_ID.txt"

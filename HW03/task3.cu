@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
     }
 
     // calculate number of blocks needed
-    int threadsPerBlock = 16;
+    int threadsPerBlock = 512;
     int numBlocks = (n + threadsPerBlock -1)/threadsPerBlock;
 
     cudaEvent_t start;

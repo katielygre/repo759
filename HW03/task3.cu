@@ -44,6 +44,12 @@ int main(int argc, char *argv[]) {
     cudaEventCreate(&start);
     cudaEventCreate(&stop);
 
+    // prefetch
+	int device = -1;
+	cudaGetDevice(&device);
+	cudaMemPrefetchAsync(a, sizeof(float) * n, device, NULL);
+  	cudaMemPrefetchAsync(b, sizeof(float) * n, device, NULL);
+
     cudaEventRecord(start);
 
     vscale<<<numBlocks, threadsPerBlock>>>(a,b,n);

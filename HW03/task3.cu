@@ -25,8 +25,9 @@ int main(int argc, char *argv[]) {
     //memory alloc
     float *a, *b;
     size_t size = sizeof(float) * n;
-    cudaMalloc((void**)&a, size);
-    cudaMalloc((void**)&b, size);
+    cudaMallocManaged(&a, size);
+    cudaMallocManaged(&b, size);
+
 
     // initalize a and b
     for (int i = 0; i< n; i++){

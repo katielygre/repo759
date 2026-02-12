@@ -1,0 +1,3 @@
+Kernel time (ms): 5.202944
+First element: -0.096635
+Last element: 3.395322

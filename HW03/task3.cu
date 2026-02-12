@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
 
     //memory alloc
     float *a, *b;
-    size = sizeof(float) * n;
+    size_t size = sizeof(float) * n;
     cudaMalloc((void**)&a, size);
     cudaMalloc((void**)&b, size);
 

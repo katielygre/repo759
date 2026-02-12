@@ -45,14 +45,19 @@ int main(int argc, char *argv[]) {
     cudaEventCreate(&stop);
 
     // prefetch
-	int device = -1;
-	cudaGetDevice(&device);
-	cudaMemPrefetchAsync(a, sizeof(float) * n, device, 0);
-    cudaMemPrefetchAsync(b, sizeof(float) * n, device, 0);
+    int device = 0;
+    cudaGetDevice(&device);
+
+    // Use nullptr instead of 0 for the stream argument
+    cudaMemPrefetchAsync(a, sizeof(float) * n, device, nullptr);
+    cudaMemPrefetchAsync(b, sizeof(float) * n, device, nullptr);
 
     cudaEventRecord(start);
 
-    vscale<<<numBlocks, threadsPerBlock>>>(a,b,n);
+    vscale<<<numBlocks, threadsPerBlock>>>(a, b, n);
+
+    // Prefetch back to CPU for faster access by std::printf
+    cudaMemPrefetchAsync(b, sizeof(float) * n, cudaCpuDeviceId, nullptr);
 
     cudaDeviceSynchronize();
 

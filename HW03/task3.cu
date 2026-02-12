@@ -48,9 +48,14 @@ int main(int argc, char *argv[]) {
     int device = 0;
     cudaGetDevice(&device);
 
-    // Use nullptr instead of 0 for the stream argument
-    cudaMemPrefetchAsync(a, sizeof(float) * n, device, nullptr);
-    cudaMemPrefetchAsync(b, sizeof(float) * n, device, nullptr);
+    // Define the location (the GPU)
+    cudaMemLocation loc;
+    loc.type = cudaMemLocationTypeDevice;
+    loc.id = device;
+
+    // Use the 5-argument version: (ptr, size, location, flags, stream)
+    cudaMemPrefetchAsync(a, sizeof(float) * n, loc, 0, nullptr);
+    cudaMemPrefetchAsync(b, sizeof(float) * n, loc, 0, nullptr);
 
     cudaEventRecord(start);
 

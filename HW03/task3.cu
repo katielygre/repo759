@@ -33,4 +33,33 @@ int main(int argc, char *argv[]) {
         b[i] = distributionB(generator);
     }
 
+    // calculate number of blocks needed
+    int threadsPerBlock = 512;
+    int numBlocks = (n + threadsPerBlock -1)/threadsPerBlock;
+
+    cudaEvent_t start;
+    cudaEvent_t stop;
+    cudaEventCreate(&start);
+    cudaEventCreate(&stop);
+
+    cudaEventRecord(start);
+
+    vscale<<<numBlocks, threadsPerBlock>>>(a,b,n);
+
+    cudaDeviceSynchronize();
+
+    cudaEventRecord(stop);
+    cudaEventSynchronize(stop);
+
+    // Get the elapsed time in milliseconds
+    float ms;
+    cudaEventElapsedTime(&ms, start, stop);
+
+    std::printf("Kernel time (ms): %f\nFirst element: %f\nLast element: %f\n",
+            ms, b[0], b[n - 1]);
+
+    // free mem
+    cudaFree(a);
+    cudaFree(b);
+
 }

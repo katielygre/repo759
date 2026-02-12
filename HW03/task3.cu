@@ -47,8 +47,8 @@ int main(int argc, char *argv[]) {
     // prefetch
 	int device = -1;
 	cudaGetDevice(&device);
-	cudaMemPrefetchAsync(a, sizeof(float) * n, device, NULL);
-  	cudaMemPrefetchAsync(b, sizeof(float) * n, device, NULL);
+	cudaMemPrefetchAsync(a, sizeof(float) * n, device, 0);
+    cudaMemPrefetchAsync(b, sizeof(float) * n, device, 0);
 
     cudaEventRecord(start);
 
